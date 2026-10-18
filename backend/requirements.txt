@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+supabase
+python-dotenv
+pandas
+numpy
+scikit-learn==1.7.2
+joblib
+pydantic
+google-genai

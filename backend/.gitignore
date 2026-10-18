@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment — NEVER commit real credentials
+.env
+
+# IDE
+.vscode/
+.idea/

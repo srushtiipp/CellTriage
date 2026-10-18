@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    /* CellTriage design tokens — light — values are "R G B" triplets */
+    --color-bg: 243 244 241;
+    --color-sidebar: 236 237 232;
+    --color-surface: 253 253 252;
+    --color-surface-muted: 233 234 229;
+    --color-border: 216 218 209;
+    --color-border-muted: 227 228 221;
+
+    --color-text-primary: 26 30 24;
+    --color-text-secondary: 86 91 82;
+    --color-text-muted: 139 144 134;
+
+    --color-accent: 82 115 77;
+    --color-accent-hover: 60 84 57;
+    --color-accent-strong: 60 84 57;
+    --color-accent-dim: 227 233 224;
+
+    --color-success: 76 122 74;
+    --color-success-dim: 225 238 223;
+    --color-warning: 169 124 59;
+    --color-warning-dim: 243 231 204;
+    --color-danger: 177 75 63;
+    --color-danger-dim: 245 222 218;
+
+    --color-shadow: 26 30 24;
+  }
+
+  .dark {
+    color-scheme: dark;
+
+    /* CellTriage design tokens — dark */
+    --color-bg: 20 24 19;
+    --color-sidebar: 24 29 22;
+    --color-surface: 30 35 28;
+    --color-surface-muted: 38 44 35;
+    --color-border: 49 56 45;
+    --color-border-muted: 41 47 38;
+
+    --color-text-primary: 234 236 229;
+    --color-text-secondary: 165 171 158;
+    --color-text-muted: 115 121 109;
+
+    --color-accent: 127 163 120;
+    --color-accent-hover: 156 192 148;
+    --color-accent-strong: 156 192 148;
+    --color-accent-dim: 38 49 35;
+
+    --color-success: 127 181 119;
+    --color-success-dim: 35 48 31;
+    --color-warning: 210 162 78;
+    --color-warning-dim: 51 42 23;
+    --color-danger: 217 124 108;
+    --color-danger-dim: 58 33 28;
+
+    --color-shadow: 0 0 0;
+  }
+
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    @apply bg-app-bg text-text-primary antialiased;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  /* Page titles use the display serif; card titles stay in the UI sans. */
+  h1 {
+    @apply font-display font-semibold tracking-tightest;
+  }
+  h2, h3 {
+    @apply font-sans font-semibold tracking-tightest;
+  }
+
+  ::selection {
+    background-color: theme('colors.accent.dim');
+    color: theme('colors.text.primary');
+  }
+
+  * {
+    scrollbar-color: theme('colors.app.border') transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: theme('colors.app.border');
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.strong');
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hover-lift {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: theme('boxShadow.lift');
+    border-color: rgb(var(--color-accent) / 0.35);
+  }
+
+  .hover-edge {
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+}

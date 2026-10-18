@@ -1,0 +1,16 @@
+node_modules/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.pyc
+
+dist/
+build/
+
+*.log
+data/raw/vin93.csv
+data/raw/vin93_sample.csv
