@@ -111,7 +111,7 @@ def _authenticated_postgrest(user_jwt: str) -> SyncPostgrestClient:
 # ---------------------------------------------------------------------------
 
 
-async def get_current_user(
+def get_current_user(
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ) -> CurrentUser:
     """
@@ -248,7 +248,7 @@ async def get_current_user(
 # ---------------------------------------------------------------------------
 
 
-async def require_admin(
+def require_admin(
     current_user: CurrentUser = Depends(get_current_user),
 ) -> CurrentUser:
     """

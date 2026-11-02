@@ -121,7 +121,7 @@ def _get_fleet_health_state(pg) -> List[dict]:
 # ---------------------------------------------------------------------------
 
 @router.get("/summary", response_model=FleetSummaryResponse)
-async def get_fleet_summary(
+def get_fleet_summary(
     current_user: CurrentUser = Depends(require_admin),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ) -> FleetSummaryResponse:
@@ -187,7 +187,7 @@ async def get_fleet_summary(
 
 
 @router.get("/vehicles", response_model=FleetVehiclesResponse)
-async def get_fleet_vehicles(
+def get_fleet_vehicles(
     current_user: CurrentUser = Depends(require_admin),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ) -> FleetVehiclesResponse:
@@ -239,7 +239,7 @@ async def get_fleet_vehicles(
 
 
 @router.get("/risk-distribution", response_model=RiskDistributionResponse)
-async def get_fleet_risk_distribution(
+def get_fleet_risk_distribution(
     current_user: CurrentUser = Depends(require_admin),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ) -> RiskDistributionResponse:
@@ -280,7 +280,7 @@ async def get_fleet_risk_distribution(
 
 
 @router.get("/soh-overview", response_model=FleetSohOverviewResponse)
-async def get_fleet_soh_overview(
+def get_fleet_soh_overview(
     current_user: CurrentUser = Depends(require_admin),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ) -> FleetSohOverviewResponse:
@@ -318,7 +318,7 @@ def _normalize_vehicle_id(vid: str) -> str:
 
 
 @router.get("/compare", response_model=CompareResponse)
-async def compare_vehicles(
+def compare_vehicles(
     vehicle_ids: str,
     current_user: CurrentUser = Depends(require_admin),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
