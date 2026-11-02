@@ -38,7 +38,7 @@ class CopilotResponse(BaseModel):
 # ---------------------------------------------------------------------------
 
 @router.post("/copilot", response_model=CopilotResponse)
-async def ai_copilot(
+def ai_copilot(
     payload: CopilotRequestPayload,
     current_user: CurrentUser = Depends(get_current_user),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),

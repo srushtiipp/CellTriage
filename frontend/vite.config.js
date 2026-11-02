@@ -14,4 +14,7 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    allowedHosts: ['easygoing-passion-production-04b8.up.railway.app'],
+  },
 })

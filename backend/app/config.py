@@ -16,6 +16,9 @@ class Settings:
     SUPABASE_ANON_KEY: str = os.getenv("SUPABASE_ANON_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhZWR0eWpjb2F1YmxldGpweHJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExODU5MjQsImV4cCI6MjEwNjc2MTkyNH0.sjcjxvDUehsrvS8NlGNO-G0yv9VPmmxOfX6Egdwe65c")
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    # Fallback model used when the primary returns a retryable 429/503.
+    # Defaults to gemini-2.5-flash (stable, lower-demand generation).
+    GEMINI_FALLBACK_MODEL: str = os.getenv("GEMINI_FALLBACK_MODEL", "gemini-2.5-flash")
 
 
 settings = Settings()

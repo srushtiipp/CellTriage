@@ -27,7 +27,7 @@ class FleetAiResponse(BaseModel):
     tools_used: List[str]
 
 @router.post("", response_model=FleetAiResponse)
-async def ask_fleet_ai(
+def ask_fleet_ai(
     req: FleetAiRequest,
     current_user: CurrentUser = Depends(require_admin),
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
