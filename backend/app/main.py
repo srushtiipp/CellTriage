@@ -3,17 +3,20 @@ main.py
 CellTriage FastAPI application entry point.
 """
 
+import logging
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import test as test_router
 from app.routers import auth as auth_router
 from app.routers import ml as ml_router
 from app.routers import vehicles as vehicles_router
 from app.routers import fleet as fleet_router
 from app.routers import ai as ai_router
 from app.routers import fleet_ai as fleet_ai_router
-from app.routers import fleet_ai as fleet_ai_router
+
+logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(
     title="CellTriage — EV Battery Health Monitoring & Fleet Management",
@@ -22,15 +25,14 @@ app = FastAPI(
 )
 
 # ---------------------------------------------------------------------------
-# CORS — allow local and production frontend origins
+# CORS — local origins plus any production origins from the CORS_ORIGINS env var
 # ---------------------------------------------------------------------------
+ALLOWED_ORIGINS = ["http://localhost:5173", "http://localhost:3000"] + [
+    o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "https://easygoing-passion-production-04b8.up.railway.app",
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -49,7 +51,6 @@ async def health_check() -> dict:
 # ---------------------------------------------------------------------------
 # Routers
 # ---------------------------------------------------------------------------
-app.include_router(test_router.router)
 app.include_router(auth_router.router)
 app.include_router(ml_router.router)
 app.include_router(vehicles_router.router)
