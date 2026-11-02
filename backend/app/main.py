@@ -22,13 +22,14 @@ app = FastAPI(
 )
 
 # ---------------------------------------------------------------------------
-# CORS — allow local frontend development origin
+# CORS — allow local and production frontend origins
 # ---------------------------------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",   # Vite default
-        "http://localhost:3000",   # CRA / fallback
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://easygoing-passion-production-04b8.up.railway.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
